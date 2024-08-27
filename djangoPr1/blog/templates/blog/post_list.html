@@ -1,71 +1,12 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>امیر </title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        .post {
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        .post h2 {
-            color: #333;
-        }
-        .post p {
-            font-size: 14px;
-            color: #666;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>وبلاگ من</h1>
-    </header>
-
-    <div class="container">
-        <div class="post">
-            <h2>امیر اول</h2>
-            <p>#کوچکسرا بهترین است</p>
-        </div>
-
-        <div class="post">
-            <h2>امیر  دوم</h2>
-            <p> امیر ناموسااا ولش کنن بدفازززز</p>
-        </div>
-
-        <div class="post">
-            <h2>امیر سوم</h2>
-            <p>برار ابدی</p>
-        </div>
-    </div>
-</body>
-</html>
+{% extends 'blog/base.html' %}
+{%block content%}
+{% for post in posts %}
+    <article class="post">
+        <time class="date">
+            {{ post.published_date }}
+        </time>
+        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </article>
+{% endfor %}
+{%endblock%}
